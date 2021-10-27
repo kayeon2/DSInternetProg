@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 import os
 
 # Create your models here.
@@ -35,10 +36,11 @@ class Post(models.Model):
     updated_at = models.DateTimeField(auto_now=True) # 수정 작성 시각
 
     #author
+    author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
 
     # 목록에서 포스트 번호, 제목을 보여주는 함수
     def __str__(self):
-        return f'[{self.pk}]{self.title}'
+        return f'[{self.pk}]{self.title} :: {self.author}'
 
     # 포스트 상세 주소를 반환하는 함수 -> 상세 페이지 html에서 사용
     def get_absolute_url(self):
