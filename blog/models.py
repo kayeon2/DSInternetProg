@@ -14,6 +14,15 @@ import os
 # 7) settings.py 작성 시각 설정하고
 # 8) 자동 작성 시각, 수정 시각 설정
 # 9) python manage.py makemigrations -> python manage.py migrate -> python manage.py runserver
+class Category(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    slug = models.SlugField(max_length=200, unique=True, allow_unicode=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = 'Categories'
 
 class Post(models.Model):
     # 제목(title) CharField() 최대 길이 30인 문자를 담는 필드
@@ -37,10 +46,12 @@ class Post(models.Model):
 
     #author
     author = models.ForeignKey(User, null=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey(Category, null=True, blank=True, on_delete=models.SET_NULL)
 
     # 목록에서 포스트 번호, 제목을 보여주는 함수
     def __str__(self):
         return f'[{self.pk}]{self.title} :: {self.author}'
+
 
     # 포스트 상세 주소를 반환하는 함수 -> 상세 페이지 html에서 사용
     def get_absolute_url(self):
