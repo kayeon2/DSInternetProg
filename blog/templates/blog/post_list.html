@@ -8,13 +8,17 @@
             {% if p.head_image %}
                 <img class="card-img-top" src="{{ p.head_image.url }}" alt="{{p}}의 head image" />
             {% else %}
+<!--            임의의 이미지 가져오기-->
                 <img class="card-img-top" src="https://picsum.photos/seed/{{p.id}}/800/200" alt="random image" />
             {% endif %}
             <div class="card-body">
                 <h2 class="card-title h4">{{ p.title | upper }}</h2>
+<!--            포스트 요약문 -->
                 {% if p.hook_text %}
                     <h5 class="text_muted"> {{ p.hook_text }} </h5>
                 {% endif %}
+<!--            포스트 미리보기 기능 -> 글자 수 제한하기
+                단어 수 기준: truncatwords / 글자 수 기준: truncatchars -->
                 <p class="card-text">{{ p.content | truncatechars:100 }}</p>
               <a class="btn btn-primary" href="{{ p.get_absolute_url }}">Read more →</a>
           </div>

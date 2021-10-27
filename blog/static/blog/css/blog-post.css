@@ -1,1 +1,4 @@
 body > div { padding-top: 50px }
+
+navbar에 페이지 윗부분이 가려지는 문제 해결
+가려지는 크기만큼 body 요소에 패딩을 준다.

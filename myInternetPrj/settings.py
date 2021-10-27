@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# 아래에서 'blog', 'single_pages' 앱 등록
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -108,6 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+# 작성 시각 설정
 TIME_ZONE = 'Asia/Seoul'
 
 USE_I18N = True

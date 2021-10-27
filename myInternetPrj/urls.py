@@ -16,13 +16,18 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# 미디어 URL
 from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
     path('blog/', include('blog.urls')), # 서버IP/blog
-    path('admin/', admin.site.urls), #서버IP/admin
+    # /blog/가 붙었을 땐 blog/urls에서 처리한다. + blog 폴더에 urls.py 생성!!
+    path('admin/', admin.site.urls), # 서버IP/admin
+    # 이건 원래 있던 거
     path('', include('single_pages.urls')), # 서버IP/
+    # 도메인 뒤에 아무것도 없을 땐 single_pages/urls에서 처리한다. + single_pages 폴더에 urls.py 생성!!
 ]
 
+# 미디어 URL
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) # 서버IP/media/
