@@ -8,7 +8,9 @@ urlpatterns = [ # 서버IP/blog/
 #    path('', views.index), -> views에 정의되어 있는 index 함수 실행
 
 # CBV
-    path('category/<str:slug>', views.category_page),
+
+    path('tag/<str:slug>', views.tag_page),
+    path('category/<str:slug>', views.category_page), # 서버IP/blog/category/slug
     path('<int:pk>/', views.PostDetail.as_view()),
     path('', views.PostList.as_view()),
 ]
