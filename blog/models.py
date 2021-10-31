@@ -21,6 +21,9 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return f'/blog/category/{self.slug}'
+
     class Meta:
         verbose_name_plural = 'Categories'
 
@@ -51,7 +54,6 @@ class Post(models.Model):
     # 목록에서 포스트 번호, 제목을 보여주는 함수
     def __str__(self):
         return f'[{self.pk}]{self.title} :: {self.author}'
-
 
     # 포스트 상세 주소를 반환하는 함수 -> 상세 페이지 html에서 사용
     def get_absolute_url(self):
