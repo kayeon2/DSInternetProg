@@ -34,7 +34,7 @@
                 {% endif %}
 <!--            포스트 미리보기 기능 -> 글자 수 제한하기
                 단어 수 기준: truncatwords / 글자 수 기준: truncatchars -->
-                <p class="card-text">{{ p.content | truncatechars:100 }}</p>
+                <p class="card-text">{{ p.get_content_markdown | truncatewords_html:50 | safe }}</p>
                 {% if p.tags.exists %}
                     <i class="fas fa-tags"></i>
                     {% for tag in p.tags.all %}

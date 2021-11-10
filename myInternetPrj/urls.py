@@ -27,6 +27,7 @@ urlpatterns = [
     # 이건 원래 있던 거
     path('', include('single_pages.urls')), # 서버IP/
     # 도메인 뒤에 아무것도 없을 땐 single_pages/urls에서 처리한다. + single_pages 폴더에 urls.py 생성!!
+    path('markdownx/', include('markdownx.urls'))
 ]
 
 # 미디어 URL

@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
 import os
+from markdownx.models import MarkdownxField
+from markdownx.utils import markdown
 
 # Create your models here.
-
 # 아래에서 제목, 내용, 작성 시각 입력하고 migrate 하기 전
 # 1) settings.py에 앱 등록 'blog', 'single_pages',
 # 2) 데이터베이스에 Post 모델 반영 python manage.py makemigrations -> blog/migrations에 0001_initial.py 생성됨
@@ -43,7 +44,7 @@ class Post(models.Model):
     # 포스트 요약문 만들기
     hook_text = models.CharField(max_length=100, blank=True)
     # 내용(content) TextField()는 문자열의 길이 제한이 없음
-    content = models.TextField()
+    content = MarkdownxField()
 
     # 이미지 업로드 (저장 위치는 settings.py에서)
     # pip install Pillow -> makemigrations -> migrate
@@ -78,3 +79,6 @@ class Post(models.Model):
     # 첨부 파일 확장자 구하는 함수
     def get_file_ext(self):
         return self.get_file_name().split('.')[-1]
+
+    def get_content_markdown(self):
+        return markdown(self.content)
