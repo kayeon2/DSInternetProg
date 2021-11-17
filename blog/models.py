@@ -70,7 +70,7 @@ class Post(models.Model):
 
     # 포스트 상세 주소를 반환하는 함수 -> 상세 페이지 html에서 사용
     def get_absolute_url(self):
-        return f'/blog/{self.pk}'
+        return f'/blog/{self.pk}/'
 
     # 첨부 파일명 구하는 함수 -> import os 해주기
     def get_file_name(self):
