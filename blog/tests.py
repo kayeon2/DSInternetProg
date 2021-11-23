@@ -68,8 +68,8 @@ class TestView(TestCase):
         soup = BeautifulSoup(response.content, 'html.parser')
         comment_area = soup.find('div', id="comment-area")
         self.assertNotIn('Log in and leave a comment', comment_area.text)
-        comment_form = comment_area.find('form', id='comment_form')
-        # self.assertTrue(comment_form.find('textarea', id='id_content'))
+        comment_form = comment_area.find('form', id='comment-form')
+        self.assertTrue(comment_form.find('textarea', id='id_content'))
 
         response = self.client.post(
             self.post_001.get_absolute_url() + 'new_comment/',
